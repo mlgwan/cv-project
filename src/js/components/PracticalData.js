@@ -28,7 +28,10 @@ export default class PracticalData extends Component {
     render() {
         return (
             <div className="practical-data">
-                <h2>Experience</h2>
+                <div className="subsection">
+                    <h2>Experience</h2>
+                    <div className="add-btn"></div>
+                </div>
                 {this.createData(this.props.jobs)}
             </div>
         );

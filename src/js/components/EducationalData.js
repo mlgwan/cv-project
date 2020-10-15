@@ -26,7 +26,10 @@ export default class EducationalData extends Component {
     render() {
         return (
             <div className="educational-data">
-                <h2>Education</h2>
+                <div className="subsection">
+                    <h2>Education</h2>
+                    <div className="add-btn"></div>
+                </div>
                 {this.createData(this.props.schools)}
             </div>
         );

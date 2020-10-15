@@ -41,18 +41,43 @@ export default class App extends Component {
                     beginningDate: "11.11.2012",
                     endDate: "12.12.2013"
                 },
-            ]
+            ],
+            isEditing: false,
         };
+    }
+
+    enterEditMode(edit) {
+        this.setState({
+            isEditing: !edit
+        });
+    }
+
+    changeFields() {
+        if (this.props.isEditing) {
+            this.setState({
+                email: <input onChange={(e) => {this.setState({emailData: e.target.value})}} type="text" value={this.state.emailData}></input>,
+                phoneNumber: <input onChange={(e) => {this.setState({phoneNumberData: e.target.value})}} type="text" value={this.state.phoneNumberData}></input>,
+                address: <input onChange={(e) => {this.setState({addressData: e.target.value})}} type="text" value={this.state.addressData}></input>
+            
+            });            
+        }
+        else {
+            this.setState({
+                email: <div>{this.state.emailData}</div>,
+                phoneNumber: <div>{this.state.phoneNumberData}</div>,
+                address: <div>{this.state.addressData}</div>
+            });
+        }
     }
 
     render() {
         return (
             <div className="App">
                 <UserData image={this.state.image} name={this.state.name}/>
-                <ContactData email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
+                <ContactData setEmail={(newEmail) => this.setEmail(newEmail)} isEditing={this.state.isEditing} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
                 <EducationalData schools={this.state.schools}/>
                 <PracticalData jobs={this.state.jobs}/>
-                <SubmitBtn/>
+                <SubmitBtn onClick={() => this.enterEditMode(this.state.isEditing)} isEditing={this.state.isEditing}/>
             </div>
         );
     }

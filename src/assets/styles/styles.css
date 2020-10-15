@@ -2,3 +2,22 @@
     display: flex;
     align-items: center;
 }
+
+.add-btn {
+    background-image: url("../images/addButton.png");
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+}
+
+.add-btn:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.subsection {
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
