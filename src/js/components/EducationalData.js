@@ -7,7 +7,7 @@ export default class EducationalData extends Component {
 
         for (let i = 0; i < this.props.schools.length; i+=1) {
             const school = [];
-            const name = <div key={`name${i}_${Date().toString()}`}>{dataArr[i].name}</div>;
+            const name = <h3 key={`name${i}_${Date().toString()}`}>{dataArr[i].name}</h3>;
             const major = <div key={`major${i}_${Date().toString()}`}>{dataArr[i].major}</div>;
             const degree = <div key={`degree${i}_${Date().toString()}`}>{dataArr[i].degree}</div>;
             const graduationDate = <div key={`graduationDate${i}_${Date().toString()}`}>{dataArr[i].graduationDate}</div>;
@@ -16,6 +16,7 @@ export default class EducationalData extends Component {
             school.push(major);
             school.push(degree);
             school.push(graduationDate);
+            school.push(<br key={`br${i}_${Date().toString()}`}/>);
 
             schools.push(<div key={`school${i}_${Date().toString()}`} className="school">{school}</div>);
         }
@@ -25,6 +26,7 @@ export default class EducationalData extends Component {
     render() {
         return (
             <div className="educational-data">
+                <h2>Education</h2>
                 {this.createData(this.props.schools)}
             </div>
         );

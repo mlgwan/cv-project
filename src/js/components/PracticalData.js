@@ -7,7 +7,7 @@ export default class PracticalData extends Component {
 
         for (let i = 0; i < this.props.jobs.length; i+=1) {
             const job = [];
-            const name = <div key={`name${i}_${Date().toString()}`}>{dataArr[i].name}</div>;
+            const name = <h3 key={`name${i}_${Date().toString()}`}>{dataArr[i].name}</h3>;
             const position = <div key={`position${i}_${Date().toString()}`}>{dataArr[i].position}</div>;
             const description = <div key={`description${i}_${Date().toString()}`}>{dataArr[i].description}</div>;
             const beginningDate = <div key={`beginningDate${i}_${Date().toString()}`}>{dataArr[i].beginningDate}</div>;
@@ -18,6 +18,7 @@ export default class PracticalData extends Component {
             job.push(description);
             job.push(beginningDate);
             job.push(endDate);
+            job.push(<br key={`br${i}_${Date().toString()}`}/>);
 
             jobs.push(<div key={`job${i}_${Date().toString()}`} className = "job">{job}</div>);
         }
@@ -27,6 +28,7 @@ export default class PracticalData extends Component {
     render() {
         return (
             <div className="practical-data">
+                <h2>Experience</h2>
                 {this.createData(this.props.jobs)}
             </div>
         );

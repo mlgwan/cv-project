@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-import UserData from "./components/UserData"
-import ContactData from "./components/ContactData"
-import EducationalData from "./components/EducationalData"
-import PracticalData from "./components/PracticalData"
-import SubmitBtn from "./components/SubmitBtn"
+import "../assets/styles/styles.css";
+
+import UserData from "./components/UserData";
+import ContactData from "./components/ContactData";
+import EducationalData from "./components/EducationalData";
+import PracticalData from "./components/PracticalData";
+import SubmitBtn from "./components/SubmitBtn";
 
 export default class App extends Component {
     constructor(props){

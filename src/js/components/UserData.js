@@ -10,7 +10,7 @@ export default class UserData extends Component {
         return (
             <div className="user-data">
                 <image style={{display: "flex", height: "200px", width: "200px", backgroundSize: "cover", backgroundImage: this.props.image}}></image>
-                <div>{this.props.name}</div>
+                <h1>{this.props.name}</h1>
             </div>
         );
     }
