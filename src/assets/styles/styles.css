@@ -21,3 +21,19 @@
     align-items: center;
     width: 50%;
 }
+
+.display {
+    display: block;
+}
+
+.edit {
+    display: none;
+}
+
+.add-education {
+    display: none;
+}
+
+.add-experience {
+    display: none;
+}

@@ -50,6 +50,18 @@ export default class App extends Component {
         this.setState({
             isEditing: !edit
         });
+        this.hideElement(document.querySelector(".display"));
+        this.hideElement(document.querySelector(".add-education"));
+        this.hideElement(document.querySelector(".add-experience"));
+        this.showElement(document.querySelector(".edit"));
+    }
+
+    hideElement(element) {
+        element.style.display = "none";
+    }
+
+    showElement(element) {
+        element.style.display = "block";
     }
 
     changeFields() {
@@ -73,12 +85,23 @@ export default class App extends Component {
     render() {
         return (
             <div className="App">
-                <UserData image={this.state.image} name={this.state.name}/>
-                <ContactData setEmail={(newEmail) => this.setEmail(newEmail)} isEditing={this.state.isEditing} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
-                <EducationalData schools={this.state.schools}/>
-                <PracticalData jobs={this.state.jobs}/>
-                <SubmitBtn onClick={() => this.enterEditMode(this.state.isEditing)} isEditing={this.state.isEditing}/>
+                <div className="display">
+                    <UserData image={this.state.image} name={this.state.name}/>
+                    <ContactData setEmail={(newEmail) => this.setEmail(newEmail)} isEditing={this.state.isEditing} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
+                    <EducationalData schools={this.state.schools}/>
+                    <PracticalData jobs={this.state.jobs}/>
+                    <SubmitBtn onClick={() => this.enterEditMode(this.state.isEditing)} isEditing={this.state.isEditing}/>
+                </div>
+            <div className="edit">
+                <div>edit window</div>
             </div>
+            <div className="add-education">
+                <div>education</div>
+            </div>
+            <div className="add-experience">
+                <div>experience</div>
+            </div>
+      </div>
         );
     }
 }
