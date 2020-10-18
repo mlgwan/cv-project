@@ -36,6 +36,16 @@ export default class AddEducationForm extends Component {
         });
     }
 
+    submitEducationForm() {
+        let educationDataObj = {
+            name: this.state.educationName,
+            major: this.state.educationMajor,
+            degree: this.state.educationDegree,
+            graduationDate: this.state.educationGraduationDate,
+        };
+        this.props.submitEducationForm(educationDataObj);
+    }
+
 
     render() {
         return (
@@ -44,7 +54,7 @@ export default class AddEducationForm extends Component {
                 <input onChange={(e) => this.changeEducationMajor(e)}type="text" placeholder="Major"></input>
                 <input onChange={(e) => this.changeEducationDegree(e)}type="text" placeholder="Degree"></input>
                 <input onChange={(e) => this.changeEducationGraduationDate(e)}type="date" placeholder="Graduation Date"></input>
-                <button>Submit</button>
+                <button onClick={() => this.submitEducationForm()}>Submit</button>
             </div>
         );
     }

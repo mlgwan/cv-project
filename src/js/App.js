@@ -20,14 +20,7 @@ export default class App extends Component {
             email: "generic@email.com",
             address: "Generic Street 12",
             phoneNumber: "49 176 1234 5678",
-            schools: [
-                {
-                    name: "generic school",
-                    major: "genericism",
-                    degree: "master",
-                    graduationDate: "10.10.2020"
-                },
-            ],
+            schools: [],
             jobs: [
                 {
                     name: "generic company",
@@ -91,6 +84,24 @@ export default class App extends Component {
         this.showElement(document.querySelector(".add-education"));
     }
 
+    showDisplay() {
+        this.hideElement(document.querySelector(".add-education"));
+        this.hideElement(document.querySelector(".edit"));
+        this.hideElement(document.querySelector(".add-experience"));
+        this.showElement(document.querySelector(".display"));
+    }
+
+    submitEducationForm(educationDataArr) {
+        this.setState(state => {
+            const schools = state.schools.concat([educationDataArr]);
+
+            return {
+                schools
+            };
+        });
+        this.showDisplay();
+    }
+
     render() {
         return (
             <div className="App">
@@ -105,7 +116,7 @@ export default class App extends Component {
                 <div>edit window</div>
             </div>
             <div className="add-education">
-                <AddEducationForm/>
+                <AddEducationForm submitEducationForm={(arr) => this.submitEducationForm(arr)}/>
             </div>
             <div className="add-experience">
                 <div>experience</div>
