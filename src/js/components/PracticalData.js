@@ -30,7 +30,7 @@ export default class PracticalData extends Component {
             <div className="practical-data">
                 <div className="subsection">
                     <h2>Experience</h2>
-                    <div className="add-btn"></div>
+                    <div className="add-btn" onClick={this.props.showExperienceForm}></div>
                 </div>
                 {this.createData(this.props.jobs)}
             </div>

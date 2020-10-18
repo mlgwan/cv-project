@@ -10,6 +10,7 @@ import PracticalData from "./components/PracticalData";
 import SubmitBtn from "./components/SubmitBtn";
 
 import AddEducationForm from "./components/AddEducationForm"
+import AddExperienceForm from "./components/AddExperienceForm";
 
 export default class App extends Component {
     constructor(props){
@@ -21,34 +22,9 @@ export default class App extends Component {
             address: "Generic Street 12",
             phoneNumber: "49 176 1234 5678",
             schools: [],
-            jobs: [
-                {
-                    name: "generic company",
-                    position: "genericist",
-                    description: "generic practices in a generic environment",
-                    beginningDate: "11.11.2011",
-                    endDate: "12.12.2012"
-                },
-                {
-                    name: "generic company2",
-                    position: "genericist2",
-                    description: "2generic practices in a generic environment",
-                    beginningDate: "11.11.2012",
-                    endDate: "12.12.2013"
-                },
-            ],
+            jobs: [],
             isEditing: false,
         };
-    }
-
-    enterEditMode(edit) {
-        this.setState({
-            isEditing: !edit
-        });
-        this.hideElement(document.querySelector(".display"));
-        this.hideElement(document.querySelector(".add-education"));
-        this.hideElement(document.querySelector(".add-experience"));
-        this.showElement(document.querySelector(".edit"));
     }
 
     hideElement(element) {
@@ -57,6 +33,40 @@ export default class App extends Component {
 
     showElement(element) {
         element.style.display = "block";
+    }
+
+    showDisplay() {
+        this.hideElement(document.querySelector(".add-education"));
+        this.hideElement(document.querySelector(".edit"));
+        this.hideElement(document.querySelector(".add-experience"));
+        this.showElement(document.querySelector(".display"));
+    }
+    showEdit() {
+        this.hideElement(document.querySelector(".display"));
+        this.hideElement(document.querySelector(".add-education"));
+        this.hideElement(document.querySelector(".add-experience"));
+        this.showElement(document.querySelector(".edit"));
+    }
+
+    showEducationForm() {
+        this.hideElement(document.querySelector(".display"));
+        this.hideElement(document.querySelector(".edit"));
+        this.hideElement(document.querySelector(".add-experience"));
+        this.showElement(document.querySelector(".add-education"));
+    }
+
+    showExperienceForm() {
+        this.hideElement(document.querySelector(".add-education"));
+        this.hideElement(document.querySelector(".edit"));
+        this.hideElement(document.querySelector(".display"));
+        this.showElement(document.querySelector(".add-experience"));
+    }
+    
+    enterEditMode(edit) {
+        this.setState({
+            isEditing: !edit
+        });
+        this.showEdit();
     }
 
     changeFields() {
@@ -77,26 +87,22 @@ export default class App extends Component {
         }
     }
 
-    showEducationForm() {
-        this.hideElement(document.querySelector(".display"));
-        this.hideElement(document.querySelector(".edit"));
-        this.hideElement(document.querySelector(".add-experience"));
-        this.showElement(document.querySelector(".add-education"));
-    }
-
-    showDisplay() {
-        this.hideElement(document.querySelector(".add-education"));
-        this.hideElement(document.querySelector(".edit"));
-        this.hideElement(document.querySelector(".add-experience"));
-        this.showElement(document.querySelector(".display"));
-    }
-
     submitEducationForm(educationDataArr) {
         this.setState(state => {
             const schools = state.schools.concat([educationDataArr]);
 
             return {
                 schools
+            };
+        });
+        this.showDisplay();
+    }
+
+    submitExperienceForm(experienceDataArr) {
+        this.setState(state => {
+            const jobs = state.jobs.concat([experienceDataArr]);
+            return {
+                jobs
             };
         });
         this.showDisplay();
@@ -109,7 +115,7 @@ export default class App extends Component {
                     <UserData image={this.state.image} name={this.state.name}/>
                     <ContactData isEditing={this.state.isEditing} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
                     <EducationalData showEducationForm={() => this.showEducationForm()} schools={this.state.schools}/>
-                    <PracticalData jobs={this.state.jobs}/>
+                    <PracticalData showExperienceForm={() => this.showExperienceForm()} jobs={this.state.jobs}/>
                     <SubmitBtn onClick={() => this.enterEditMode(this.state.isEditing)} isEditing={this.state.isEditing}/>
                 </div>
             <div className="edit">
@@ -119,7 +125,7 @@ export default class App extends Component {
                 <AddEducationForm submitEducationForm={(arr) => this.submitEducationForm(arr)}/>
             </div>
             <div className="add-experience">
-                <div>experience</div>
+                <AddExperienceForm submitExperienceForm={(arr) => this.submitExperienceForm(arr)}/>
             </div>
       </div>
         );
