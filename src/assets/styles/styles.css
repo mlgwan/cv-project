@@ -37,3 +37,16 @@
 .add-experience {
     display: none;
 }
+
+.add-education-form {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 250px;
+    border: solid;
+    width: 40%;
+    margin: 0 auto;
+    padding: 10% 0 10% 0;
+    background-color: gray;
+}

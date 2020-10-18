@@ -28,7 +28,7 @@ export default class EducationalData extends Component {
             <div className="educational-data">
                 <div className="subsection">
                     <h2>Education</h2>
-                    <div className="add-btn"></div>
+                    <div className="add-btn" onClick={this.props.showEducationForm}></div>
                 </div>
                 {this.createData(this.props.schools)}
             </div>

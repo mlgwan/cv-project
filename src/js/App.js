@@ -9,6 +9,8 @@ import EducationalData from "./components/EducationalData";
 import PracticalData from "./components/PracticalData";
 import SubmitBtn from "./components/SubmitBtn";
 
+import AddEducationForm from "./components/AddEducationForm"
+
 export default class App extends Component {
     constructor(props){
         super();
@@ -82,13 +84,20 @@ export default class App extends Component {
         }
     }
 
+    showEducationForm() {
+        this.hideElement(document.querySelector(".display"));
+        this.hideElement(document.querySelector(".edit"));
+        this.hideElement(document.querySelector(".add-experience"));
+        this.showElement(document.querySelector(".add-education"));
+    }
+
     render() {
         return (
             <div className="App">
                 <div className="display">
                     <UserData image={this.state.image} name={this.state.name}/>
-                    <ContactData setEmail={(newEmail) => this.setEmail(newEmail)} isEditing={this.state.isEditing} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
-                    <EducationalData schools={this.state.schools}/>
+                    <ContactData isEditing={this.state.isEditing} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
+                    <EducationalData showEducationForm={() => this.showEducationForm()} schools={this.state.schools}/>
                     <PracticalData jobs={this.state.jobs}/>
                     <SubmitBtn onClick={() => this.enterEditMode(this.state.isEditing)} isEditing={this.state.isEditing}/>
                 </div>
@@ -96,7 +105,7 @@ export default class App extends Component {
                 <div>edit window</div>
             </div>
             <div className="add-education">
-                <div>education</div>
+                <AddEducationForm/>
             </div>
             <div className="add-experience">
                 <div>experience</div>
