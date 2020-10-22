@@ -50,7 +50,7 @@ export default class Edit extends Component {
     render() {
         let schools = [];
         this.state.schools.forEach((school, i) => schools.push(
-            <div className="school">
+            <div className="school" key={`school${i}`}>
                 <input onChange={(e) => this.changeSchoolValue("name", e.target.value, i)} type="text" placeholder="Name" value={school.name}></input>
                 <input onChange={(e) => this.changeSchoolValue("degree", e.target.value, i)} type="text" placeholder="Degree" value={school.degree}></input>
                 <input onChange={(e) => this.changeSchoolValue("graduationDate", e.target.value, i)} type="text" placeholder="Graduation Date" value={school.graduationDate}></input>
@@ -60,7 +60,7 @@ export default class Edit extends Component {
 
         let jobs = [];
         this.state.jobs.forEach((job, i) => jobs.push(
-            <div className="jobs">
+            <div className="jobs" key={`job${i}`}>
                 <input onChange={(e) => this.changeJobValue("name", e.target.value, i)} type="text" placeholder="Name" value={job.name}></input>
                 <input onChange={(e) => this.changeJobValue("position", e.target.value, i)} type="text" placeholder="Position" value={job.position}></input>
                 <input onChange={(e) => this.changeJobValue("description", e.target.value, i)} type="text" placeholder="Description" value={job.description}></input>

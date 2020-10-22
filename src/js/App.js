@@ -42,12 +42,11 @@ export default class App extends Component {
         this.hideElement(document.querySelector(".add-experience"));
         this.showElement(document.querySelector(".display"));
     }
+    
     showEdit() {
-
         this.setState({
             edit: <Edit name={this.state.name} image={this.state.image} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber} schools={this.state.schools} jobs={this.state.jobs}/>,
-        })
-
+        });
         this.hideElement(document.querySelector(".display"));
         this.hideElement(document.querySelector(".add-education"));
         this.hideElement(document.querySelector(".add-experience"));
