@@ -8,7 +8,7 @@ import ContactData from "./components/ContactData";
 import EducationalData from "./components/EducationalData";
 import PracticalData from "./components/PracticalData";
 import SubmitBtn from "./components/SubmitBtn";
-
+import Edit from "./components/Edit";
 import AddEducationForm from "./components/AddEducationForm"
 import AddExperienceForm from "./components/AddExperienceForm";
 
@@ -23,9 +23,10 @@ export default class App extends Component {
             phoneNumber: "49 176 1234 5678",
             schools: [],
             jobs: [],
-            isEditing: false,
+            edit: null,
         };
     }
+
 
     hideElement(element) {
         element.style.display = "none";
@@ -42,6 +43,11 @@ export default class App extends Component {
         this.showElement(document.querySelector(".display"));
     }
     showEdit() {
+
+        this.setState({
+            edit: <Edit name={this.state.name} image={this.state.image} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber} schools={this.state.schools} jobs={this.state.jobs}/>,
+        })
+
         this.hideElement(document.querySelector(".display"));
         this.hideElement(document.querySelector(".add-education"));
         this.hideElement(document.querySelector(".add-experience"));
@@ -60,31 +66,6 @@ export default class App extends Component {
         this.hideElement(document.querySelector(".edit"));
         this.hideElement(document.querySelector(".display"));
         this.showElement(document.querySelector(".add-experience"));
-    }
-    
-    enterEditMode(edit) {
-        this.setState({
-            isEditing: !edit
-        });
-        this.showEdit();
-    }
-
-    changeFields() {
-        if (this.props.isEditing) {
-            this.setState({
-                email: <input onChange={(e) => {this.setState({emailData: e.target.value})}} type="text" value={this.state.emailData}></input>,
-                phoneNumber: <input onChange={(e) => {this.setState({phoneNumberData: e.target.value})}} type="text" value={this.state.phoneNumberData}></input>,
-                address: <input onChange={(e) => {this.setState({addressData: e.target.value})}} type="text" value={this.state.addressData}></input>
-            
-            });            
-        }
-        else {
-            this.setState({
-                email: <div>{this.state.emailData}</div>,
-                phoneNumber: <div>{this.state.phoneNumberData}</div>,
-                address: <div>{this.state.addressData}</div>
-            });
-        }
     }
 
     submitEducationForm(educationDataArr) {
@@ -116,10 +97,10 @@ export default class App extends Component {
                     <ContactData isEditing={this.state.isEditing} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
                     <EducationalData showEducationForm={() => this.showEducationForm()} schools={this.state.schools}/>
                     <PracticalData showExperienceForm={() => this.showExperienceForm()} jobs={this.state.jobs}/>
-                    <SubmitBtn onClick={() => this.enterEditMode(this.state.isEditing)} isEditing={this.state.isEditing}/>
+                    <SubmitBtn onClick={() => this.showEdit()} isEditing={this.state.isEditing}/>
                 </div>
             <div className="edit">
-                <div>edit window</div>
+                {this.state.edit}
             </div>
             <div className="add-education">
                 <AddEducationForm submitEducationForm={(arr) => this.submitEducationForm(arr)}/>
