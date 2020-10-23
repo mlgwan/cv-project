@@ -27,7 +27,8 @@
 }
 
 .edit {
-    display: none;
+    display: block;
+    transition: 0.1s;
 }
 
 .add-education {
@@ -36,6 +37,10 @@
 
 .add-experience {
     display: none;
+}
+
+.edit-form {
+    transition: 0.1s;
 }
 
 .add-education-form {
@@ -63,3 +68,4 @@
     padding: 10% 0 10% 0;
     background-color: gray;
 }
+

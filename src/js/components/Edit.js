@@ -48,13 +48,14 @@ export default class Edit extends Component {
     }
 
     render() {
+
         let schools = [];
         this.state.schools.forEach((school, i) => schools.push(
             <div className="school" key={`school${i}`}>
                 <input onChange={(e) => this.changeSchoolValue("name", e.target.value, i)} type="text" placeholder="Name" value={school.name}></input>
+                <input onChange={(e) => this.changeSchoolValue("major", e.target.value, i)} type="text" placeholder="Major" value={school.major}></input>
                 <input onChange={(e) => this.changeSchoolValue("degree", e.target.value, i)} type="text" placeholder="Degree" value={school.degree}></input>
-                <input onChange={(e) => this.changeSchoolValue("graduationDate", e.target.value, i)} type="text" placeholder="Graduation Date" value={school.graduationDate}></input>
-                <input onChange={(e) => this.changeSchoolValue("major", e.target.value, i)} type="date" placeholder="Major" value={school.major}></input>
+                <input onChange={(e) => this.changeSchoolValue("graduationDate", e.target.value, i)} type="date" placeholder="Graduation Date" value={school.graduationDate}></input>
             </div>
         ));
 
@@ -68,7 +69,7 @@ export default class Edit extends Component {
                 <input onChange={(e) => this.changeJobValue("endDate", e.target.value, i)} type="date" placeholder="End Date" value={job.endDate}></input>
             </div>
         ));
-
+        
         return (
             <div className="edit-form">
                 <input onChange={(e) => this.changeValue("name", e.target.value)} type="text" placeholder="Name" value={this.state.name}></input>
@@ -77,6 +78,7 @@ export default class Edit extends Component {
                 <input onChange={(e) => this.changeValue("phoneNumber", e.target.value)} type="text" placeholder="Phone Number" value={this.state.phoneNumber}></input>
                 <div className="schools-list">{schools}</div>
                 <div className="jobs-list">{jobs}</div>
+                <button onClick={() => this.props.submitEdit(this.state)}>Submit</button>
             </div>
         )
     }

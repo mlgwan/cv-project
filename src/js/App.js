@@ -24,9 +24,9 @@ export default class App extends Component {
             schools: [],
             jobs: [],
             edit: null,
+            isEditing: false,
         };
     }
-
 
     hideElement(element) {
         element.style.display = "none";
@@ -38,31 +38,33 @@ export default class App extends Component {
 
     showDisplay() {
         this.hideElement(document.querySelector(".add-education"));
-        this.hideElement(document.querySelector(".edit"));
         this.hideElement(document.querySelector(".add-experience"));
         this.showElement(document.querySelector(".display"));
     }
     
     showEdit() {
-        this.setState({
-            edit: <Edit name={this.state.name} image={this.state.image} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber} schools={this.state.schools} jobs={this.state.jobs}/>,
-        });
+        this.updateEdit();
         this.hideElement(document.querySelector(".display"));
         this.hideElement(document.querySelector(".add-education"));
         this.hideElement(document.querySelector(".add-experience"));
-        this.showElement(document.querySelector(".edit"));
+        this.updateIsEditing();
+    }
+
+    updateIsEditing() {
+        let isEditingUpdate = !this.state.isEditing;
+        this.setState({
+            isEditing: isEditingUpdate
+        });
     }
 
     showEducationForm() {
         this.hideElement(document.querySelector(".display"));
-        this.hideElement(document.querySelector(".edit"));
         this.hideElement(document.querySelector(".add-experience"));
         this.showElement(document.querySelector(".add-education"));
     }
 
     showExperienceForm() {
         this.hideElement(document.querySelector(".add-education"));
-        this.hideElement(document.querySelector(".edit"));
         this.hideElement(document.querySelector(".display"));
         this.showElement(document.querySelector(".add-experience"));
     }
@@ -70,11 +72,11 @@ export default class App extends Component {
     submitEducationForm(educationDataArr) {
         this.setState(state => {
             const schools = state.schools.concat([educationDataArr]);
-
             return {
                 schools
             };
         });
+        this.updateEdit();
         this.showDisplay();
     }
 
@@ -85,29 +87,56 @@ export default class App extends Component {
                 jobs
             };
         });
+        this.updateEdit();
         this.showDisplay();
     }
 
+    submitEdit(editedState) {
+        this.setState({
+            name: editedState.name,
+            image: editedState.image,
+            email: editedState.email,
+            address: editedState.address,
+            phoneNumber: editedState.phoneNumber,
+            schools: editedState.schools,
+            jobs: editedState.jobs,
+        });
+        this.updateEdit();
+        this.updateIsEditing();
+    }
+
+    updateEdit() {
+        this.setState({
+            edit: <Edit submitEdit={(editedState)=>this.submitEdit(editedState)} name={this.state.name} image={this.state.image} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber} schools={this.state.schools} jobs={this.state.jobs}/>,
+        });
+    }
+
     render() {
-        return (
-            <div className="App">
-                <div className="display">
-                    <UserData image={this.state.image} name={this.state.name}/>
-                    <ContactData isEditing={this.state.isEditing} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
-                    <EducationalData showEducationForm={() => this.showEducationForm()} schools={this.state.schools}/>
-                    <PracticalData showExperienceForm={() => this.showExperienceForm()} jobs={this.state.jobs}/>
-                    <SubmitBtn onClick={() => this.showEdit()} isEditing={this.state.isEditing}/>
+        if (this.state.isEditing) {
+            return (
+                <div className="edit">
+                    {this.state.edit}
                 </div>
-            <div className="edit">
-                {this.state.edit}
-            </div>
-            <div className="add-education">
-                <AddEducationForm submitEducationForm={(arr) => this.submitEducationForm(arr)}/>
-            </div>
-            <div className="add-experience">
-                <AddExperienceForm submitExperienceForm={(arr) => this.submitExperienceForm(arr)}/>
-            </div>
-      </div>
-        );
+            );
+        }
+        else {
+            return (
+                <div className="App">
+                    <div className="display">
+                        <UserData image={this.state.image} name={this.state.name}/>
+                        <ContactData isEditing={this.state.isEditing} email={this.state.email} address={this.state.address} phoneNumber={this.state.phoneNumber}/>
+                        <EducationalData showEducationForm={() => this.showEducationForm()} schools={this.state.schools}/>
+                        <PracticalData showExperienceForm={() => this.showExperienceForm()} jobs={this.state.jobs}/>
+                        <button onClick={() => this.showEdit()}>Edit</button>
+                    </div>
+                    <div className="add-education">
+                        <AddEducationForm submitEducationForm={(arr) => this.submitEducationForm(arr)}/>
+                    </div>
+                    <div className="add-experience">
+                        <AddExperienceForm submitExperienceForm={(arr) => this.submitExperienceForm(arr)}/>
+                    </div>
+                </div>
+            );
+        }
     }
 }
