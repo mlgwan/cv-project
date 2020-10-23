@@ -52,17 +52,24 @@ export default class AddExperienceForm extends Component {
             endDate: this.state.experienceEndDate,
         };
         this.props.submitExperienceForm(experienceDataObj);
+        this.setState({
+            experienceName: "",
+            experiencePosition: "",
+            experienceDescription: "",
+            experienceBeginningDate: "",
+            experienceEndDate: "",
+        });
     }
 
 
     render() {
         return (
             <div className="add-experience-form">
-                <input onChange={(e) => this.changeExperienceName(e)} type="text" placeholder="Name"></input>
-                <input onChange={(e) => this.changeExperiencePosition(e)} type="text" placeholder="Position"></input>
-                <textarea onChange={(e) => this.changeExperienceDescription(e)} type="text" placeholder="Description"></textarea>
-                <input onChange={(e) => this.changeExperienceBeginningDate(e)} type="date" placeholder="Beginning Date"></input>
-                <input onChange={(e) => this.changeExperienceEndDate(e)} type="date" placeholder="End Date"></input>
+                <input value={this.state.experienceName} onChange={(e) => this.changeExperienceName(e)} type="text" placeholder="Name"></input>
+                <input value={this.state.experiencePosition} onChange={(e) => this.changeExperiencePosition(e)} type="text" placeholder="Position"></input>
+                <textarea value={this.state.experienceDescription} onChange={(e) => this.changeExperienceDescription(e)} type="text" placeholder="Description"></textarea>
+                <input value={this.state.experienceBeginningDate} onChange={(e) => this.changeExperienceBeginningDate(e)} type="date" placeholder="Beginning Date"></input>
+                <input value={this.state.experienceEndDate} onChange={(e) => this.changeExperienceEndDate(e)} type="date" placeholder="End Date"></input>
                 <button onClick={() => this.submitExperienceForm()}>Submit</button>
             </div>
         );

@@ -44,16 +44,22 @@ export default class AddEducationForm extends Component {
             graduationDate: this.state.educationGraduationDate,
         };
         this.props.submitEducationForm(educationDataObj);
+        this.setState({
+            educationName: "",
+            educationMajor: "",
+            educationDegree: "",
+            educationGraduationDate: "",
+        });
     }
 
 
     render() {
         return (
             <div className="add-education-form">
-                <input onChange={(e) => this.changeEducationName(e)}type="text" placeholder="Name"></input>
-                <input onChange={(e) => this.changeEducationMajor(e)}type="text" placeholder="Major"></input>
-                <input onChange={(e) => this.changeEducationDegree(e)}type="text" placeholder="Degree"></input>
-                <input onChange={(e) => this.changeEducationGraduationDate(e)}type="date" placeholder="Graduation Date"></input>
+                <input value={this.state.educationName} onChange={(e) => this.changeEducationName(e)}type="text" placeholder="Name"></input>
+                <input value={this.state.educationMajor} onChange={(e) => this.changeEducationMajor(e)}type="text" placeholder="Major"></input>
+                <input value={this.state.educationDegree} onChange={(e) => this.changeEducationDegree(e)}type="text" placeholder="Degree"></input>
+                <input value={this.state.educationGraduationDate} onChange={(e) => this.changeEducationGraduationDate(e)}type="date" placeholder="Graduation Date"></input>
                 <button onClick={() => this.submitEducationForm()}>Submit</button>
             </div>
         );

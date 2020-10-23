@@ -24,6 +24,7 @@
 
 .display {
     display: block;
+    margin: 0 auto;
 }
 
 .edit {
@@ -40,7 +41,16 @@
 }
 
 .edit-form {
-    transition: 0.1s;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    height: auto;
+    border-left: solid black;
+    border-right: solid black;
+    border-bottom: solid black;
+    width: 40%;
+    margin: 0 auto;
+    background-color: gray;
 }
 
 .add-education-form {
@@ -67,5 +77,24 @@
     margin: 0 auto;
     padding: 10% 0 10% 0;
     background-color: gray;
+}
+
+.edit-section {
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0 5% 0 5%;
+    margin: 0 0 10px 0;
+    border-top: solid black;
+}
+
+.edit-subsection {
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0 5% 0 5%;
+    margin: 0 0 10px 0;
+}
+
+.edit-form-element {
+    margin: 0 auto;
 }
 
