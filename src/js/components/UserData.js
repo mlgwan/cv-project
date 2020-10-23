@@ -9,7 +9,7 @@ export default class UserData extends Component {
     render() {
         return (
             <div className="user-data">
-                <image style={{display: "flex", height: "200px", width: "200px", backgroundSize: "cover", backgroundImage: this.props.image}}></image>
+                <image className="profile-picture"></image>
                 <h1>{this.props.name}</h1>
             </div>
         );

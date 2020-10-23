@@ -25,6 +25,7 @@
 .display {
     display: block;
     margin: 0 auto;
+    width: 75%;
 }
 
 .edit {
@@ -98,3 +99,11 @@
     margin: 0 auto;
 }
 
+
+.profile-picture {
+    display: flex;
+    height: 200px;
+    width: 200px;
+    background-size: cover;
+    background-image: url("../images/profilePicturePlaceholder.png");
+}

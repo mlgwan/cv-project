@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-import "../assets/styles/styles.css";
+import "../assets/styles/styles.css"
+import profilePicturePlaceholder from "../assets/images/profilePicturePlaceholder.png";
 
 import UserData from "./components/UserData";
 import ContactData from "./components/ContactData";
 import EducationalData from "./components/EducationalData";
 import PracticalData from "./components/PracticalData";
-import SubmitBtn from "./components/SubmitBtn";
 import Edit from "./components/Edit";
 import AddEducationForm from "./components/AddEducationForm"
 import AddExperienceForm from "./components/AddExperienceForm";
